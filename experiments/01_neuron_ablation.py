@@ -14,19 +14,35 @@ from mechinterp.attribution import (
     ablated_scales,
     gradient_times_activation,
     margin_function,
+    next_token_logits_function,
 )
 from mechinterp.interventions import instrument_mlp_neurons
 from mechinterp.metrics import top_positive_neurons
 from mechinterp.models import load_pythia, load_smollm2, single_token_id
 
 
+def print_predictions(logits, tokenizer, k=10):
+    probs = jax.nn.softmax(logits.astype(jnp.float32))
+    values, indices = jax.lax.top_k(probs, k)
+
+    print(f"{'Token':>20} {'Probability':>12} {'Logit':>10}")
+
+    for prob, idx in zip(values, indices):
+        token = tokenizer.decode([int(idx)])
+
+        print(
+            f"{token!r:>20} "
+            f"{float(prob):12.4%} "
+            f"{float(logits[idx]):+10.4f}"
+        )
+
 def run(
     seed: int, top_k: int, num_controls: int, prompt: str, model: str = "smollm2"
 ) -> None:
     loaded = load_smollm2() if model == "smollm2" else load_pythia()
     tokenizer = loaded.tokenizer
-    target = " Paris"
-    foil = " Rome"
+    target = " France"
+    foil = " Italy"
     target_id = single_token_id(tokenizer, target)
     foil_id = single_token_id(tokenizer, foil)
     ids = jnp.asarray(tokenizer.encode(prompt, add_special_tokens=False))
@@ -43,7 +59,7 @@ def run(
     print(f"Prompt: {prompt!r}")
     print(f"Target/foil: {target!r} / {foil!r}")
     print(f"MLP gates: {gated.num_layers} x {gated.num_neurons}")
-    print(f"Baseline margin (Paris - Rome): {baseline:+.5f}")
+    print(f"Baseline margin (France - Italy): {baseline:+.5f}")
     print("\nTop positive gradient x activation candidates:")
     for layer, neuron, score in selected:
         actual = float(margin(ablated_scales(scales, [(layer, neuron)])))
@@ -86,13 +102,43 @@ def run(
 
     print("\nNote: large effects do not identify a neuron's semantic meaning.")
 
+    logits_fn = next_token_logits_function(gated, ids)
+
+    baseline_logits = logits_fn(scales)
+    ablated_logits = logits_fn(
+        ablated_scales(scales, selected_indices)
+    )
+
+    print("\nPredictions before ablation:")
+    print_predictions(baseline_logits, tokenizer)
+
+    print("\nPredictions after ablation:")
+    print_predictions(ablated_logits, tokenizer)
+
+    baseline_probs = jax.nn.softmax(
+        baseline_logits.astype(jnp.float32)
+    )
+    ablated_probs = jax.nn.softmax(
+        ablated_logits.astype(jnp.float32)
+    )
+
+    print("\nTarget and foil probabilities:")
+
+    for token_id in [target_id, foil_id]:
+        token = tokenizer.decode([token_id])
+
+        print(
+            f"{token!r}: "
+            f"{float(baseline_probs[token_id]):.4%} -> "
+            f"{float(ablated_probs[token_id]):.4%}"
+        )
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--top-k", type=int, default=8)
     parser.add_argument("--num-controls", type=int, default=8)
-    parser.add_argument("--prompt", default="The capital of France is")
+    parser.add_argument("--prompt", default="Paris is the capital of")
     parser.add_argument("--model", choices=["smollm2", "pythia"], default="smollm2")
     args = parser.parse_args()
     run(args.seed, args.top_k, args.num_controls, args.prompt, args.model)

@@ -9,6 +9,9 @@ dependencies = [
   "penzai==0.2.5",
   "transformers>=4.44,<4.52",
   "torch>=2.2,<3",
+  "fonttools<4.69.0",
+  "matplotlib>=3.11.2",
+  "datasets>=5.0.1",
 ]
 
 [dependency-groups]

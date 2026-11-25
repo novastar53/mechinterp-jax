@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from penzai import pz
 from penzai.models.transformer import model_parts, variants
 
-DEFAULT_MODEL_ID = "HuggingFaceTB/SmolLM2-135M"
+DEFAULT_MODEL_ID = "HuggingFaceTB/SmolLM2-360M"
 PYTHIA_MODEL_ID = "EleutherAI/pythia-70m-deduped"
 
 

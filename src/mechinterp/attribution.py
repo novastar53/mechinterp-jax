@@ -53,3 +53,20 @@ def ablated_scales(
     return baseline_scales.at[
         jnp.asarray(layer_ids), jnp.asarray(neuron_ids)
     ].set(0.0)
+
+
+
+def next_token_logits_function(
+    gated: GatedModel,
+    token_ids: jax.Array,
+) -> Callable[[jax.Array], jax.Array]:
+    tokens = pz.nx.wrap(
+        jnp.asarray(token_ids, dtype=jnp.int32),
+        "seq",
+    )
+
+    def logits(scales):
+        model = with_scales(gated, scales)
+        return model(tokens).unwrap("seq", "vocabulary")[-1]
+
+    return logits
