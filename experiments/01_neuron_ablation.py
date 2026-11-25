@@ -17,11 +17,13 @@ from mechinterp.attribution import (
 )
 from mechinterp.interventions import instrument_mlp_neurons
 from mechinterp.metrics import top_positive_neurons
-from mechinterp.models import load_pythia, single_token_id
+from mechinterp.models import load_pythia, load_smollm2, single_token_id
 
 
-def run(seed: int, top_k: int, num_controls: int, prompt: str) -> None:
-    loaded = load_pythia()
+def run(
+    seed: int, top_k: int, num_controls: int, prompt: str, model: str = "smollm2"
+) -> None:
+    loaded = load_smollm2() if model == "smollm2" else load_pythia()
     tokenizer = loaded.tokenizer
     target = " Paris"
     foil = " Rome"
@@ -91,5 +93,6 @@ if __name__ == "__main__":
     parser.add_argument("--top-k", type=int, default=8)
     parser.add_argument("--num-controls", type=int, default=8)
     parser.add_argument("--prompt", default="The capital of France is")
+    parser.add_argument("--model", choices=["smollm2", "pythia"], default="smollm2")
     args = parser.parse_args()
-    run(args.seed, args.top_k, args.num_controls, args.prompt)
+    run(args.seed, args.top_k, args.num_controls, args.prompt, args.model)

@@ -1,4 +1,4 @@
-"""Explicit Penzai model surgery for native GPT-NeoX MLP neurons."""
+"""Explicit Penzai model surgery for native MLP neurons."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ def scale_final_position(activations: jax.Array, scales: jax.Array) -> jax.Array
 
 @pz.pytree_dataclass
 class FinalTokenNeuronGate(pz.nn.Layer):
-    """Multiply post-GELU GPT-NeoX neurons by a vector of intervention scales.
+    """Multiply intermediate MLP neuron outputs by a vector of intervention scales.
 
     This small first experiment accepts unbatched prompts only. Penzai names
     the relevant activation axes "seq" and "neurons".
@@ -54,18 +54,24 @@ class GatedModel:
 def instrument_mlp_neurons(
     model: model_parts.TransformerLM, *, expected_layers: int | None = None
 ) -> GatedModel:
-    """Install gates between GELU and the output projection of each NeoX MLP.
+    """Install gates immediately before each MLP's output projection.
 
-    Requires a non-stacked GPT-NeoX/Pythia model whose feedforwards have the
-    sequence [up projection, GELU, down projection]. Every gate receives a
-    distinct stable layer index in decoder-block traversal order.
+    Supports non-stacked GPT-NeoX (post-GELU) and Llama-like (post-GLU
+    multiplication) MLPs. Layer indices follow decoder-block traversal order.
     """
     found_layers: list[int] = []
     n_neurons = int(model.metadata.mlp_hidden_dim)
 
     def add_gate(ff: model_parts.TransformerFeedForward):
-        if len(ff.sublayers) != 3 or not isinstance(ff.sublayers[1], pz.nn.Elementwise):
-            raise ValueError("Expected a three-stage GPT-NeoX feedforward block")
+        layers = ff.sublayers
+        is_neox = len(layers) == 3 and isinstance(layers[1], pz.nn.Elementwise)
+        is_glu = (
+            len(layers) == 2
+            and isinstance(layers[0], pz.nn.BranchAndMultiplyTogether)
+            and isinstance(layers[1], pz.nn.Linear)
+        )
+        if not (is_neox or is_glu):
+            raise ValueError("Unsupported MLP structure; expected NeoX or Llama-like")
         layer_index = len(found_layers)
         found_layers.append(layer_index)
         gate = FinalTokenNeuronGate(
@@ -73,7 +79,7 @@ def instrument_mlp_neurons(
             scales=jnp.ones((n_neurons,), dtype=jnp.float32),
         )
         return dataclasses.replace(
-            ff, sublayers=[ff.sublayers[0], ff.sublayers[1], gate, ff.sublayers[2]]
+            ff, sublayers=[*layers[:-1], gate, layers[-1]]
         )
 
     patched = (
@@ -82,7 +88,7 @@ def instrument_mlp_neurons(
         .apply(add_gate)
     )
     if not found_layers:
-        raise ValueError("No GPT-NeoX MLP blocks found; check model architecture")
+        raise ValueError("No supported MLP blocks found; check model architecture")
     if expected_layers is not None and len(found_layers) != expected_layers:
         raise ValueError(
             f"Expected {expected_layers} MLP blocks, got {len(found_layers)}"

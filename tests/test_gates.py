@@ -38,8 +38,28 @@ def tiny_model():
     return pz.freeze_params(model)
 
 
-def test_gates_are_identity_and_are_differentiable():
-    model = tiny_model()
+def tiny_llama_model():
+    from penzai.models.transformer.variants import llamalike_common
+
+    config = llamalike_common.LlamalikeTransformerConfig(
+        num_kv_heads=1,
+        query_head_multiplier=2,
+        embedding_dim=8,
+        projection_dim=4,
+        mlp_hidden_dim=16,
+        num_decoder_blocks=2,
+        vocab_size=32,
+        mlp_variant="swiglu",
+        tie_embedder_and_logits=False,
+    )
+    return pz.freeze_params(llamalike_common.build_llamalike_transformer(
+        config, init_base_rng=jax.random.key(0)
+    ))
+
+
+@pytest.mark.parametrize("model_factory", [tiny_model, tiny_llama_model])
+def test_gates_are_identity_and_are_differentiable(model_factory):
+    model = model_factory()
     ids = jnp.array([1, 2, 3], dtype=jnp.int32)
     original_logits = model(pz.nx.wrap(ids, "seq")).unwrap("seq", "vocabulary")
     gated = instrument_mlp_neurons(model, expected_layers=2)
