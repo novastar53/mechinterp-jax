@@ -70,3 +70,41 @@ def next_token_logits_function(
         return model(tokens).unwrap("seq", "vocabulary")[-1]
 
     return logits
+
+
+
+from mechinterp.activations import (
+    capture_final_mlp_activations,
+    capture_swiglu_activations,
+)
+
+
+def test_capture_final_mlp_activations():
+    gated = instrument_mlp_neurons(
+        tiny_llama_model(),
+        expected_layers=2,
+    )
+
+    ids = jnp.array([1, 2, 3], dtype=jnp.int32)
+
+    captured = capture_final_mlp_activations(
+        gated.model,
+        ids,
+        (0, 1),
+    )
+
+    assert captured.shape == (
+        2, gated.num_neurons
+    )
+
+    for layer in range(2):
+        expected = capture_swiglu_activations(
+            gated, ids, layer
+        ).activation[-1]
+
+        assert jnp.allclose(
+            captured[layer],
+            expected,
+            atol=1e-5,
+            rtol=1e-5,
+        )

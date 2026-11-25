@@ -111,3 +111,134 @@ def with_scales(gated: GatedModel, scales: jax.Array) -> model_parts.Transformer
             )
         )
     )
+
+
+
+def patch_final_position(
+    activations: jax.Array,
+    indices: jax.Array,
+    values: jax.Array,
+) -> jax.Array:
+    return activations.at[-1, indices].set(
+        values.astype(activations.dtype)
+    )
+
+
+@pz.pytree_dataclass
+class FinalTokenNeuronPatch(pz.nn.Layer):
+    indices: jax.Array
+    values: jax.Array
+
+    def __call__(self, x, **kwargs):
+        activations = x.unwrap("seq", "neurons")
+
+        edited = patch_final_position(
+            activations,
+            self.indices,
+            self.values,
+        )
+
+        return pz.nx.wrap(edited, "seq", "neurons")
+
+
+def with_activation_patch(
+    gated: GatedModel,
+    layer_index: int,
+    neuron_indices: tuple[int, ...],
+    values: jax.Array,
+):
+    if not 0 <= layer_index < gated.num_layers:
+        raise ValueError("Invalid layer index")
+
+    if any(
+        not 0 <= i < gated.num_neurons
+        for i in neuron_indices
+    ):
+        raise ValueError("Invalid neuron index")
+
+    if len(set(neuron_indices)) != len(neuron_indices):
+        raise ValueError("Duplicate neuron indices")
+
+    if values.shape != (len(neuron_indices),):
+        raise ValueError("Incorrect replacement shape")
+
+    indices = jnp.asarray(
+        neuron_indices, dtype=jnp.int32
+    )
+
+    def replace(gate):
+        if gate.layer_index != layer_index:
+            return gate
+
+        return pz.nn.Sequential([
+            gate,
+            FinalTokenNeuronPatch(
+                indices=indices,
+                values=values,
+            ),
+        ])
+
+    return (
+        pz.select(gated.model)
+        .at_instances_of(FinalTokenNeuronGate)
+        .apply(replace)
+    )
+
+
+
+@pz.pytree_dataclass
+class FinalTokenNeuronOffset(pz.nn.Layer):
+    offsets: jax.Array
+
+    def __call__(self, x, **kwargs):
+        activations = x.unwrap("seq", "neurons")
+
+        edited = activations.at[-1].add(
+            self.offsets.astype(activations.dtype)
+        )
+
+        return pz.nx.wrap(edited, "seq", "neurons")
+
+
+def with_activation_offsets(
+    gated: GatedModel,
+    layer_indices: tuple[int, ...],
+    offsets: jax.Array,
+):
+    if offsets.shape != (
+        len(layer_indices), gated.num_neurons
+    ):
+        raise ValueError("Incorrect offset shape")
+
+    if len(set(layer_indices)) != len(layer_indices):
+        raise ValueError("Duplicate layer indices")
+
+    if any(
+        not 0 <= layer < gated.num_layers
+        for layer in layer_indices
+    ):
+        raise ValueError("Invalid layer index")
+
+    lookup = {
+        layer: i
+        for i, layer in enumerate(layer_indices)
+    }
+
+    def replace(gate):
+        if gate.layer_index not in lookup:
+            return gate
+
+        return pz.nn.Sequential([
+            gate,
+            FinalTokenNeuronOffset(
+                offsets=offsets[
+                    lookup[gate.layer_index]
+                ]
+            ),
+        ])
+
+    return (
+        pz.select(gated.model)
+        .at_instances_of(FinalTokenNeuronGate)
+        .apply(replace)
+    )

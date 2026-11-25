@@ -86,3 +86,115 @@ def test_gates_are_identity_and_are_differentiable(model_factory):
     assert float(ablated[0, 0]) == 0.0
     assert float(ablated[1, 2]) == 0.0
     assert float(scales[0, 0]) == 1.0
+
+
+
+from mechinterp.interventions import (
+    patch_final_position,
+    with_activation_patch,
+)
+from mechinterp.activations import capture_swiglu_activations
+
+
+def test_patch_final_position():
+    activations = jnp.array([
+        [1., 2., 3.],
+        [4., 5., 6.],
+    ])
+
+    edited = patch_final_position(
+        activations,
+        jnp.array([0, 2]),
+        jnp.array([-10., 20.]),
+    )
+
+    expected = jnp.array([
+        [1., 2., 3.],
+        [-10., 5., 20.],
+    ])
+
+    assert jnp.array_equal(edited, expected)
+    assert float(activations[-1, 0]) == 4.
+
+
+def test_activation_patch():
+    gated = instrument_mlp_neurons(
+        tiny_llama_model(),
+        expected_layers=2,
+    )
+
+    ids = jnp.array([1, 2, 3], dtype=jnp.int32)
+    tokens = pz.nx.wrap(ids, "seq")
+
+    baseline = gated.model(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    captured = capture_swiglu_activations(
+        gated, ids, layer_index=1
+    )
+
+    original = captured.activation[-1, 3:4]
+
+    patched = with_activation_patch(
+        gated, 1, (3,), original
+    )
+
+    restored = patched(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    assert jnp.allclose(
+        baseline, restored,
+        atol=1e-5, rtol=1e-5,
+    )
+
+    patched = with_activation_patch(
+        gated, 1, (3,), jnp.array([0.])
+    )
+
+    patched_logits = patched(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    ablated = ablated_scales(
+        gated.ones(), [(1, 3)]
+    )
+
+    from mechinterp.interventions import with_scales
+
+    ablated_logits = with_scales(
+        gated, ablated
+    )(tokens).unwrap("seq", "vocabulary")
+
+    assert jnp.allclose(
+        patched_logits, ablated_logits,
+        atol=1e-5, rtol=1e-5,
+    )
+
+    assert jnp.allclose(
+        patched_logits[:-1], baseline[:-1]
+    )
+
+
+from mechinterp.interventions import (
+    with_activation_offsets,
+    with_activation_patch,
+)
+
+from mechinterp.activations import (
+    capture_final_mlp_activations,
+    capture_swiglu_activations,
+
+)
+
+
+from mechinterp.interventions import (
+    with_activation_offsets,
+    with_activation_patch,
+)
+
+from mechinterp.activations import (
+    capture_final_mlp_activations,
+    capture_swiglu_activations,
+)

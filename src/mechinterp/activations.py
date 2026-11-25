@@ -29,10 +29,13 @@ class SwiGLUActivations:
     activation: jax.Array
 
 
+
 def capture_swiglu_activations(
     gated: GatedModel,
     token_ids: jax.Array,
     layer_index: int,
+    *,
+    model=None,
 ) -> SwiGLUActivations:
     if not 0 <= layer_index < gated.num_layers:
         raise ValueError("Invalid layer index")
@@ -56,7 +59,7 @@ def capture_swiglu_activations(
             return ff
 
         if not isinstance(glu, pz.nn.BranchAndMultiplyTogether):
-            raise ValueError("Expected a gated MLP")
+            raise ValueError("Expected SwiGLU layer")
 
         gate_branch, value_branch = glu.branches
         gate_linear, nonlinearity = gate_branch.sublayers
@@ -90,22 +93,64 @@ def capture_swiglu_activations(
             ],
         )
 
-    model = (
-        pz.select(gated.model)
+    base_model = gated.model if model is None else model
+
+    instrumented = (
+        pz.select(base_model)
         .at_instances_of(model_parts.TransformerFeedForward)
+        .apply(instrument)
+    )
+
+    tokens = pz.nx.wrap(token_ids, "seq")
+    _ = instrumented(tokens)
+
+    if activation_saved.value is None:
+        raise ValueError("Failed to capture SwiGLU activations")
+
+    return SwiGLUActivations(
+        gate=gate_saved.value.unwrap("seq", "neurons"),
+        value=value_saved.value.unwrap("seq", "neurons"),
+        activation=activation_saved.value.unwrap("seq", "neurons"),
+    )
+
+
+
+def capture_final_mlp_activations(
+    model,
+    token_ids: jax.Array,
+    layer_indices: tuple[int, ...],
+) -> jax.Array:
+    saved = {
+        layer: pz.StateVariable(None)
+        for layer in layer_indices
+    }
+
+    def instrument(gate):
+        layer = gate.layer_index
+
+        if layer not in saved:
+            return gate
+
+        return pz.nn.Sequential([
+            SaveActivation(saved[layer]),
+            gate,
+        ])
+
+    model = (
+        pz.select(model)
+        .at_instances_of(FinalTokenNeuronGate)
         .apply(instrument)
     )
 
     tokens = pz.nx.wrap(token_ids, "seq")
     _ = model(tokens)
 
-    if activation_saved.value is None:
-        raise ValueError("No matching MLP was instrumented")
+    if any(s.value is None for s in saved.values()):
+        raise ValueError("Failed to capture requested layers")
 
-    return SwiGLUActivations(
-        gate=gate_saved.value.unwrap("seq", "neurons"),
-        value=value_saved.value.unwrap("seq", "neurons"),
-        activation=activation_saved.value.unwrap(
+    return jnp.stack([
+        saved[layer].value.unwrap(
             "seq", "neurons"
-        ),
-    )
+        )[-1]
+        for layer in layer_indices
+    ])
