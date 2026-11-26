@@ -115,11 +115,14 @@ def capture_swiglu_activations(
 
 
 
+
 def capture_final_mlp_activations(
     model,
     token_ids: jax.Array,
     layer_indices: tuple[int, ...],
-) -> jax.Array:
+    *,
+    return_logits=False,
+):
     saved = {
         layer: pz.StateVariable(None)
         for layer in layer_indices
@@ -143,14 +146,23 @@ def capture_final_mlp_activations(
     )
 
     tokens = pz.nx.wrap(token_ids, "seq")
-    _ = model(tokens)
+    logits = model(tokens)
 
     if any(s.value is None for s in saved.values()):
         raise ValueError("Failed to capture requested layers")
 
-    return jnp.stack([
+    activations = jnp.stack([
         saved[layer].value.unwrap(
             "seq", "neurons"
         )[-1]
         for layer in layer_indices
     ])
+
+    if return_logits:
+        return (
+            activations,
+            logits.unwrap("seq", "vocabulary")[-1],
+        )
+
+    return activations
+

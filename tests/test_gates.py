@@ -198,3 +198,77 @@ from mechinterp.activations import (
     capture_final_mlp_activations,
     capture_swiglu_activations,
 )
+
+
+
+def test_capture_activations_and_logits():
+    gated = instrument_mlp_neurons(
+        tiny_llama_model(),
+        expected_layers=2,
+    )
+
+    ids = jnp.array([1, 2, 3], dtype=jnp.int32)
+
+    activations, logits = capture_final_mlp_activations(
+        gated.model,
+        ids,
+        (0, 1),
+        return_logits=True,
+    )
+
+    expected_activations = capture_final_mlp_activations(
+        gated.model,
+        ids,
+        (0, 1),
+    )
+
+    expected_logits = gated.model(
+        pz.nx.wrap(ids, "seq")
+    ).unwrap("seq", "vocabulary")[-1]
+
+    assert jnp.allclose(
+        activations, expected_activations
+    )
+
+    assert jnp.allclose(
+        logits, expected_logits
+    )
+
+
+
+def test_full_mlp_retention():
+    import jax
+
+    from mechinterp.sparsity import (
+        TOP,
+        with_mlp_sparsity,
+    )
+
+    gated = instrument_mlp_neurons(
+        tiny_llama_model(),
+        expected_layers=2,
+    )
+
+    ids = pz.nx.wrap(
+        jnp.array([1, 2, 3]), "seq"
+    )
+
+    baseline = gated.model(ids).unwrap(
+        "seq", "vocabulary"
+    )
+
+    sparse = with_mlp_sparsity(
+        gated,
+        jnp.int32(gated.num_neurons),
+        jnp.int32(TOP),
+        jax.random.key(0),
+    )
+
+    actual = sparse(ids).unwrap(
+        "seq", "vocabulary"
+    )
+
+    assert jnp.allclose(
+        actual, baseline,
+        atol=1e-5, rtol=1e-5,
+    )
