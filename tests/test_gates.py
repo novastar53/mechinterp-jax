@@ -271,4 +271,86 @@ def test_full_mlp_retention():
     assert jnp.allclose(
         actual, baseline,
         atol=1e-5, rtol=1e-5,
+    
     )
+
+
+
+def test_quadrant_intervention_matches_sparsification():
+    import jax
+
+    from mechinterp.quadrants import (
+        BASELINE,
+        TOP_K,
+        NN,
+        with_quadrant_intervention,
+    )
+
+    from mechinterp.sparsity import (
+        TOP,
+        with_mlp_sparsity,
+    )
+
+    gated = instrument_mlp_neurons(
+        tiny_llama_model(),
+        expected_layers=2,
+    )
+
+    tokens = pz.nx.wrap(
+        jnp.array([1, 2, 3]), "seq"
+    )
+
+    key = jax.random.key(0)
+
+    baseline = gated.model(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    model, saved = with_quadrant_intervention(
+        gated,
+        jnp.int32(BASELINE),
+        jnp.int32(NN),
+        jnp.int32(4),
+        key,
+    )
+
+    actual = model(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    assert jnp.allclose(
+        actual, baseline,
+        atol=1e-5, rtol=1e-5,
+    )
+
+    for state in saved:
+        assert state.value.shape == (4, 5)
+
+    model, _ = with_quadrant_intervention(
+        gated,
+        jnp.int32(TOP_K),
+        jnp.int32(NN),
+        jnp.int32(4),
+        key,
+    )
+
+    reference = with_mlp_sparsity(
+        gated,
+        jnp.int32(4),
+        jnp.int32(TOP),
+        key,
+    )
+
+    actual = model(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    expected = reference(tokens).unwrap(
+        "seq", "vocabulary"
+    )
+
+    assert jnp.allclose(
+        actual, expected,
+        atol=1e-5, rtol=1e-5,
+    )
+

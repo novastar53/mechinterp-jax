@@ -1,0 +1,55 @@
+index,city,task,template,prompt,activation_829,activation_920
+0,Paris,capital,0,Paris is the capital of,17.391324996948242,-2.1226086616516113
+1,Paris,capital,1,The country with Paris as its capital is,2.0240814685821533,-1.1202069520950317
+2,Paris,capital,2,Paris serves as the capital of,5.558333873748779,-0.10513972491025925
+3,Paris,language,0,Paris is a city where people speak,6.573524475097656,-1.4509938955307007
+4,Paris,language,1,The main language spoken in Paris is,23.66029167175293,-1.620830774307251
+5,Paris,language,2,"In Paris, the primary language is",21.26545524597168,-1.3837271928787231
+6,Paris,population,0,Paris has a population of,-0.2368999421596527,-1.0113375186920166
+7,Paris,population,1,The population of Paris is approximately,-0.20464091002941132,0.9932583570480347
+8,Paris,population,2,The number of people living in Paris is approximately,-0.6128509640693665,-0.8994687795639038
+9,Rome,capital,0,Rome is the capital of,-0.3752252161502838,10.774667739868164
+10,Rome,capital,1,The country with Rome as its capital is,-0.5830864310264587,2.706653356552124
+11,Rome,capital,2,Rome serves as the capital of,-0.4794521629810333,-1.9702341556549072
+12,Rome,language,0,Rome is a city where people speak,-0.2939789295196533,7.68014669418335
+13,Rome,language,1,The main language spoken in Rome is,-0.4115082919597626,16.100526809692383
+14,Rome,language,2,"In Rome, the primary language is",-0.5430545806884766,14.075822830200195
+15,Rome,population,0,Rome has a population of,-0.37167561054229736,-0.9338110685348511
+16,Rome,population,1,The population of Rome is approximately,-0.16342759132385254,-0.10309819132089615
+17,Rome,population,2,The number of people living in Rome is approximately,-0.3637465536594391,-0.8102385997772217
+18,Berlin,capital,0,Berlin is the capital of,-0.391960084438324,-1.0024950504302979
+19,Berlin,capital,1,The country with Berlin as its capital is,-0.603172779083252,-1.0787333250045776
+20,Berlin,capital,2,Berlin serves as the capital of,-0.45973366498947144,-1.080870509147644
+21,Berlin,language,0,Berlin is a city where people speak,-0.29774004220962524,-1.3061965703964233
+22,Berlin,language,1,The main language spoken in Berlin is,-0.023766610771417618,-1.7062265872955322
+23,Berlin,language,2,"In Berlin, the primary language is",-0.28863489627838135,-1.096958041191101
+24,Berlin,population,0,Berlin has a population of,-0.26801377534866333,-0.8239263892173767
+25,Berlin,population,1,The population of Berlin is approximately,-0.13372479379177094,0.3926091492176056
+26,Berlin,population,2,The number of people living in Berlin is approximately,-0.41332948207855225,-0.862646758556366
+27,Madrid,capital,0,Madrid is the capital of,0.5063770413398743,-0.9565322995185852
+28,Madrid,capital,1,The country with Madrid as its capital is,-0.5638826489448547,-1.0673505067825317
+29,Madrid,capital,2,Madrid serves as the capital of,0.5974397659301758,-1.0031570196151733
+30,Madrid,language,0,Madrid is a city where people speak,0.4300413429737091,-1.192803144454956
+31,Madrid,language,1,The main language spoken in Madrid is,-0.5023967623710632,-0.8513394594192505
+32,Madrid,language,2,"In Madrid, the primary language is",0.0052168164402246475,-0.8790161609649658
+33,Madrid,population,0,Madrid has a population of,-0.14166201651096344,-0.9109784364700317
+34,Madrid,population,1,The population of Madrid is approximately,-0.20681427419185638,0.5388545989990234
+35,Madrid,population,2,The number of people living in Madrid is approximately,-0.18893331289291382,-1.0072870254516602
+36,Lisbon,capital,0,Lisbon is the capital of,-0.8758183717727661,-1.8694677352905273
+37,Lisbon,capital,1,The country with Lisbon as its capital is,-0.6832230091094971,-1.3965318202972412
+38,Lisbon,capital,2,Lisbon serves as the capital of,-1.2396169900894165,-1.8520773649215698
+39,Lisbon,language,0,Lisbon is a city where people speak,-0.6017378568649292,-1.7501364946365356
+40,Lisbon,language,1,The main language spoken in Lisbon is,-0.46497949957847595,-1.571482539176941
+41,Lisbon,language,2,"In Lisbon, the primary language is",-0.13055852055549622,-1.676938772201538
+42,Lisbon,population,0,Lisbon has a population of,-0.2702077031135559,-0.918232262134552
+43,Lisbon,population,1,The population of Lisbon is approximately,-0.13590185344219208,0.6791056990623474
+44,Lisbon,population,2,The number of people living in Lisbon is approximately,-0.23988257348537445,-1.0212883949279785
+45,London,capital,0,London is the capital of,0.4591168165206909,-1.3383429050445557
+46,London,capital,1,The country with London as its capital is,-0.44683417677879333,-1.0298749208450317
+47,London,capital,2,London serves as the capital of,0.8306296467781067,-0.10474005341529846
+48,London,language,0,London is a city where people speak,-0.12339168787002563,-0.9241761565208435
+49,London,language,1,The main language spoken in London is,0.3515312075614929,-1.2868413925170898
+50,London,language,2,"In London, the primary language is",0.3452827036380768,-1.3325979709625244
+51,London,population,0,London has a population of,-0.2771441638469696,-0.8108084797859192
+52,London,population,1,The population of London is approximately,-0.15476861596107483,0.6274831891059875
+53,London,population,2,The number of people living in London is approximately,-0.26195457577705383,-0.7178947329521179

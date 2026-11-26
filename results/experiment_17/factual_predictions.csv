@@ -1,0 +1,235 @@
+prompt,answer,method,keep,trial,sparsity,answer_probability,answer_log_probability,prediction,correct,baseline_correct,agreement
+Paris is the capital of, France,baseline,2560,0,0.0,0.6701253056526184,-0.4002905488014221, France,1,1,1
+Paris is the capital of, France,top,1920,0,0.25,0.6789638996124268,-0.3871873617172241, France,1,1,1
+Paris is the capital of, France,top,1280,0,0.5,0.7589938044548035,-0.2757616937160492, France,1,1,1
+Paris is the capital of, France,top,640,0,0.75,0.5930132865905762,-0.522538423538208, France,1,1,1
+Paris is the capital of, France,top,320,0,0.875,0.2622103989124298,-1.3386080265045166, the,0,1,0
+Paris is the capital of, France,top,256,0,0.9,0.29931914806365967,-1.206244945526123, the,0,1,0
+Paris is the capital of, France,top,200,0,0.921875,0.31994354724884033,-1.139610767364502, France,1,1,1
+Paris is the capital of, France,top,128,0,0.95,0.0023135654628276825,-6.068965435028076, the,0,1,0
+Paris is the capital of, France,top,64,0,0.975,3.2376519811805338e-06,-12.64066219329834, people,0,1,0
+Paris is the capital of, France,top,0,0,1.0,1.8698854020726685e-08,-17.794803619384766, nowhere,0,1,0
+Paris is the capital of, France,random,640,0,0.75,2.075280924884737e-08,-17.690584182739258, !,0,1,0
+Paris is the capital of, France,random,640,1,0.75,6.826846310481471e-10,-21.10498809814453,outheastern,0,1,0
+Paris is the capital of, France,random,200,0,0.921875,1.23634957827079e-09,-20.5111026763916, compared,0,1,0
+Paris is the capital of, France,random,200,1,0.921875,8.792225969500578e-08,-16.24681282043457, compatibility,0,1,0
+Paris is the capital of, France,bottom,2360,0,0.078125,3.325812958365759e-10,-21.82413673400879, :,0,1,0
+Rome is the capital of, Italy,baseline,2560,0,0.0,0.42281374335289,-0.8608235120773315, Italy,1,1,1
+Rome is the capital of, Italy,top,1920,0,0.25,0.3760449290275574,-0.9780466556549072, the,0,1,0
+Rome is the capital of, Italy,top,1280,0,0.5,0.4789944291114807,-0.7360663414001465, Italy,1,1,1
+Rome is the capital of, Italy,top,640,0,0.75,0.20394116640090942,-1.5899237394332886, the,0,1,0
+Rome is the capital of, Italy,top,320,0,0.875,0.3712635040283203,-0.9908431768417358, the,0,1,0
+Rome is the capital of, Italy,top,256,0,0.9,0.48491141200065613,-0.7237890362739563, Italy,1,1,1
+Rome is the capital of, Italy,top,200,0,0.921875,0.012524646706879139,-4.380056858062744, the,0,1,0
+Rome is the capital of, Italy,top,128,0,0.95,0.00019177314243279397,-8.559197425842285, the,0,1,0
+Rome is the capital of, Italy,top,64,0,0.975,4.727513442048803e-05,-9.959526062011719, f,0,1,0
+Rome is the capital of, Italy,top,0,0,1.0,6.930571672114638e-10,-21.089908599853516,covery,0,1,0
+Rome is the capital of, Italy,random,640,0,0.75,3.3914817620939175e-09,-19.501998901367188, again,0,1,0
+Rome is the capital of, Italy,random,640,1,0.75,3.6750188883161172e-06,-12.513952255249023, been,0,1,0
+Rome is the capital of, Italy,random,200,0,0.921875,1.1550451706199283e-09,-20.579126358032227, averaged,0,1,0
+Rome is the capital of, Italy,random,200,1,0.921875,2.3269780058399192e-07,-15.27352523803711,annels,0,1,0
+Rome is the capital of, Italy,bottom,2360,0,0.078125,1.724353296594927e-06,-13.270658493041992,”,0,1,0
+Berlin is the capital of, Germany,baseline,2560,0,0.0,0.6775140762329102,-0.38932496309280396, Germany,1,1,1
+Berlin is the capital of, Germany,top,1920,0,0.25,0.6664626002311707,-0.40577128529548645, Germany,1,1,1
+Berlin is the capital of, Germany,top,1280,0,0.5,0.6119076013565063,-0.49117401242256165, Germany,1,1,1
+Berlin is the capital of, Germany,top,640,0,0.75,0.4107593595981598,-0.8897477388381958, Germany,1,1,1
+Berlin is the capital of, Germany,top,320,0,0.875,0.3566528856754303,-1.0309922695159912, Germany,1,1,1
+Berlin is the capital of, Germany,top,256,0,0.9,0.5689805150032043,-0.563909113407135, Germany,1,1,1
+Berlin is the capital of, Germany,top,200,0,0.921875,0.10600212961435318,-2.244296073913574, the,0,1,0
+Berlin is the capital of, Germany,top,128,0,0.95,0.00020983026479370892,-8.46921157836914,"
+",0,1,0
+Berlin is the capital of, Germany,top,64,0,0.975,3.183507487847237e-06,-12.657526969909668,",",0,1,0
+Berlin is the capital of, Germany,top,0,0,1.0,3.512278246020628e-09,-19.46700096130371,conciliation,0,1,0
+Berlin is the capital of, Germany,random,640,0,0.75,1.2056473597255035e-09,-20.5362491607666, ,0,1,0
+Berlin is the capital of, Germany,random,640,1,0.75,6.206547550391406e-05,-9.687320709228516,",",0,1,0
+Berlin is the capital of, Germany,random,200,0,0.921875,1.952010251216052e-07,-15.449235916137695,incoln,0,1,0
+Berlin is the capital of, Germany,random,200,1,0.921875,1.206378885676429e-09,-20.535642623901367, similar,0,1,0
+Berlin is the capital of, Germany,bottom,2360,0,0.078125,1.810972065641181e-07,-15.524231910705566,",",0,1,0
+Madrid is the capital of, Spain,baseline,2560,0,0.0,0.48934638500213623,-0.7146846652030945, Spain,1,1,1
+Madrid is the capital of, Spain,top,1920,0,0.25,0.4721022844314575,-0.7505596280097961, Spain,1,1,1
+Madrid is the capital of, Spain,top,1280,0,0.5,0.5007199645042419,-0.6917083263397217, Spain,1,1,1
+Madrid is the capital of, Spain,top,640,0,0.75,0.38535767793655396,-0.953583300113678, Spain,1,1,1
+Madrid is the capital of, Spain,top,320,0,0.875,0.014296074397861958,-4.247770309448242, the,0,1,0
+Madrid is the capital of, Spain,top,256,0,0.9,0.15653878450393677,-1.8544515371322632, the,0,1,0
+Madrid is the capital of, Spain,top,200,0,0.921875,0.02154749259352684,-3.837495803833008, the,0,1,0
+Madrid is the capital of, Spain,top,128,0,0.95,0.00019084631639998406,-8.564042091369629,The,0,1,0
+Madrid is the capital of, Spain,top,64,0,0.975,3.4754465971786885e-09,-19.477542877197266,.,0,1,0
+Madrid is the capital of, Spain,top,0,0,1.0,1.2098554103001646e-10,-22.835350036621094,kary,0,1,0
+Madrid is the capital of, Spain,random,640,0,0.75,1.1713351710795905e-07,-15.959951400756836, greatest,0,1,0
+Madrid is the capital of, Spain,random,640,1,0.75,5.146087644902764e-08,-16.78244400024414, repeal,0,1,0
+Madrid is the capital of, Spain,random,200,0,0.921875,1.9789422878169205e-10,-22.34328842163086,rass,0,1,0
+Madrid is the capital of, Spain,random,200,1,0.921875,6.087404472054914e-06,-12.009288787841797,private,0,1,0
+Madrid is the capital of, Spain,bottom,2360,0,0.078125,8.983846555565833e-09,-18.5278377532959, are,0,1,0
+Lisbon is the capital of, Portugal,baseline,2560,0,0.0,0.6497823596000671,-0.4311177730560303, Portugal,1,1,1
+Lisbon is the capital of, Portugal,top,1920,0,0.25,0.6553715467453003,-0.42255300283432007, Portugal,1,1,1
+Lisbon is the capital of, Portugal,top,1280,0,0.5,0.5194264650344849,-0.6550300717353821, Portugal,1,1,1
+Lisbon is the capital of, Portugal,top,640,0,0.75,0.17860296368598938,-1.7225899696350098, the,0,1,0
+Lisbon is the capital of, Portugal,top,320,0,0.875,0.033826883882284164,-3.3864994049072266, the,0,1,0
+Lisbon is the capital of, Portugal,top,256,0,0.9,0.013548876158893108,-4.301451683044434, the,0,1,0
+Lisbon is the capital of, Portugal,top,200,0,0.921875,0.0019491476705297828,-6.240363121032715, the,0,1,0
+Lisbon is the capital of, Portugal,top,128,0,0.95,1.6870275203473284e-06,-13.292542457580566, in,0,1,0
+Lisbon is the capital of, Portugal,top,64,0,0.975,7.270471336084938e-09,-18.739444732666016,"
+",0,1,0
+Lisbon is the capital of, Portugal,top,0,0,1.0,8.938457612961415e-11,-23.138072967529297,kary,0,1,0
+Lisbon is the capital of, Portugal,random,640,0,0.75,6.169486255203083e-09,-18.903650283813477, either,0,1,0
+Lisbon is the capital of, Portugal,random,640,1,0.75,7.79072877321596e-08,-16.367746353149414,Chapter,0,1,0
+Lisbon is the capital of, Portugal,random,200,0,0.921875,5.944637138100006e-08,-16.63819122314453,ellery,0,1,0
+Lisbon is the capital of, Portugal,random,200,1,0.921875,3.75284692211153e-09,-19.4007511138916, domest,0,1,0
+Lisbon is the capital of, Portugal,bottom,2360,0,0.078125,8.440796889566671e-13,-27.80052947998047, et,0,1,0
+Tokyo is the capital of, Japan,baseline,2560,0,0.0,0.8560304641723633,-0.15544931590557098, Japan,1,1,1
+Tokyo is the capital of, Japan,top,1920,0,0.25,0.8564096689224243,-0.15500643849372864, Japan,1,1,1
+Tokyo is the capital of, Japan,top,1280,0,0.5,0.8319158554077148,-0.18402394652366638, Japan,1,1,1
+Tokyo is the capital of, Japan,top,640,0,0.75,0.2634194493293762,-1.3340076208114624, the,0,1,0
+Tokyo is the capital of, Japan,top,320,0,0.875,0.3823286294937134,-0.9614747166633606, the,0,1,0
+Tokyo is the capital of, Japan,top,256,0,0.9,0.1669798642396927,-1.7898820638656616, the,0,1,0
+Tokyo is the capital of, Japan,top,200,0,0.921875,0.056785840541124344,-2.8684682846069336, the,0,1,0
+Tokyo is the capital of, Japan,top,128,0,0.95,0.07951096445322037,-2.5318603515625, the,0,1,0
+Tokyo is the capital of, Japan,top,64,0,0.975,5.139084350958001e-06,-12.178635597229004,;,0,1,0
+Tokyo is the capital of, Japan,top,0,0,1.0,1.3112864127862167e-09,-20.45225715637207,assertAlmostEqual,0,1,0
+Tokyo is the capital of, Japan,random,640,0,0.75,5.607136976948368e-09,-18.999225616455078,ACK,0,1,0
+Tokyo is the capital of, Japan,random,640,1,0.75,1.4649629953567e-08,-18.038850784301758,1,0,1,0
+Tokyo is the capital of, Japan,random,200,0,0.921875,1.5408410103390224e-09,-20.290937423706055,Return,0,1,0
+Tokyo is the capital of, Japan,random,200,1,0.921875,2.328692794151266e-10,-22.180543899536133,hov,0,1,0
+Tokyo is the capital of, Japan,bottom,2360,0,0.078125,9.285467967856675e-06,-11.58705997467041,"
+
+  ",0,1,0
+Paris is a city where people speak, French,baseline,2560,0,0.0,0.2376660406589508,-1.4368888139724731, French,1,1,1
+Paris is a city where people speak, French,top,1920,0,0.25,0.24431376159191132,-1.409301996231079, French,1,1,1
+Paris is a city where people speak, French,top,1280,0,0.5,0.25538069009780884,-1.3649998903274536, French,1,1,1
+Paris is a city where people speak, French,top,640,0,0.75,0.17887751758098602,-1.721053957939148, French,1,1,1
+Paris is a city where people speak, French,top,320,0,0.875,0.21100494265556335,-1.5558737516403198, a,0,1,0
+Paris is a city where people speak, French,top,256,0,0.9,0.25534555315971375,-1.3651375770568848, French,1,1,1
+Paris is a city where people speak, French,top,200,0,0.921875,0.2378561645746231,-1.4360891580581665, French,1,1,1
+Paris is a city where people speak, French,top,128,0,0.95,0.22372367978096008,-1.4973435401916504, French,1,1,1
+Paris is a city where people speak, French,top,64,0,0.975,0.0008514675428159535,-7.068549156188965,—,0,1,0
+Paris is a city where people speak, French,top,0,0,1.0,2.381684571783893e-10,-22.158042907714844, nowhere,0,1,0
+Paris is a city where people speak, French,random,640,0,0.75,5.181235440687715e-09,-19.078222274780273, complex,0,1,0
+Paris is a city where people speak, French,random,640,1,0.75,6.043110900577631e-09,-18.924346923828125, it,0,1,0
+Paris is a city where people speak, French,random,200,0,0.921875,4.318027272548486e-12,-26.168222427368164, exceptions,0,1,0
+Paris is a city where people speak, French,random,200,1,0.921875,5.218561693887125e-11,-23.67621421813965,hari,0,1,0
+Paris is a city where people speak, French,bottom,2360,0,0.078125,1.595893373007584e-08,-17.9532470703125, -,0,1,0
+Rome is a city where people speak, Italian,baseline,2560,0,0.0,0.0855327770113945,-2.458855628967285, a,0,0,1
+Rome is a city where people speak, Italian,top,1920,0,0.25,0.08887693285942078,-2.4205026626586914, a,0,0,1
+Rome is a city where people speak, Italian,top,1280,0,0.5,0.09179046750068665,-2.388246774673462, a,0,0,1
+Rome is a city where people speak, Italian,top,640,0,0.75,0.022793550044298172,-3.781277656555176, a,0,0,1
+Rome is a city where people speak, Italian,top,320,0,0.875,0.03637858107686043,-3.313775062561035, a,0,0,1
+Rome is a city where people speak, Italian,top,256,0,0.9,0.05557624623179436,-2.8899993896484375, a,0,0,1
+Rome is a city where people speak, Italian,top,200,0,0.921875,0.08585141599178314,-2.455137252807617, the,0,0,0
+Rome is a city where people speak, Italian,top,128,0,0.95,0.01997191458940506,-3.91342830657959, English,0,0,0
+Rome is a city where people speak, Italian,top,64,0,0.975,5.07280565216206e-05,-9.889031410217285, multiple,0,0,0
+Rome is a city where people speak, Italian,top,0,0,1.0,1.313434139227354e-09,-20.450620651245117,covery,0,0,0
+Rome is a city where people speak, Italian,random,640,0,0.75,8.587366373546956e-10,-20.875558853149414, Wills,0,0,0
+Rome is a city where people speak, Italian,random,640,1,0.75,4.448015644697989e-08,-16.92822265625,ors,0,0,0
+Rome is a city where people speak, Italian,random,200,0,0.921875,1.209321442985356e-08,-18.230621337890625, hardly,0,0,0
+Rome is a city where people speak, Italian,random,200,1,0.921875,4.85865257360274e-07,-14.537334442138672,=,0,0,0
+Rome is a city where people speak, Italian,bottom,2360,0,0.078125,4.3321779230609536e-07,-14.65202522277832,ount,0,0,0
+Berlin is a city where people speak, German,baseline,2560,0,0.0,0.15068136155605316,-1.8925879001617432, German,1,1,1
+Berlin is a city where people speak, German,top,1920,0,0.25,0.1482274979352951,-1.9090070724487305, German,1,1,1
+Berlin is a city where people speak, German,top,1280,0,0.5,0.1550053060054779,-1.8642959594726562, German,1,1,1
+Berlin is a city where people speak, German,top,640,0,0.75,0.16011038422584534,-1.8318917751312256, English,0,1,0
+Berlin is a city where people speak, German,top,320,0,0.875,0.20279556512832642,-1.5955568552017212, German,1,1,1
+Berlin is a city where people speak, German,top,256,0,0.9,0.188381165266037,-1.669287919998169, a,0,1,0
+Berlin is a city where people speak, German,top,200,0,0.921875,0.0879305973649025,-2.4312074184417725, like,0,1,0
+Berlin is a city where people speak, German,top,128,0,0.95,0.0465545579791069,-3.0671303272247314, with,0,1,0
+Berlin is a city where people speak, German,top,64,0,0.975,0.01729213073849678,-4.057503700256348, and,0,1,0
+Berlin is a city where people speak, German,top,0,0,1.0,5.475364606155608e-10,-21.325592041015625,conciliation,0,1,0
+Berlin is a city where people speak, German,random,640,0,0.75,3.4551636218793647e-08,-17.180810928344727,---,0,1,0
+Berlin is a city where people speak, German,random,640,1,0.75,2.0687640045480293e-08,-17.693729400634766,i,0,1,0
+Berlin is a city where people speak, German,random,200,0,0.921875,2.55274403571093e-06,-12.878341674804688, confron,0,1,0
+Berlin is a city where people speak, German,random,200,1,0.921875,2.454389136374857e-09,-19.825387954711914, antioxid,0,1,0
+Berlin is a city where people speak, German,bottom,2360,0,0.078125,1.2031561880121444e-07,-15.933147430419922,<|endoftext|>,0,1,0
+Madrid is a city where people speak, Spanish,baseline,2560,0,0.0,0.2635914981365204,-1.3333547115325928, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,1920,0,0.25,0.26449015736579895,-1.329951286315918, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,1280,0,0.5,0.2671433389186859,-1.319969892501831, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,640,0,0.75,0.2118610143661499,-1.5518248081207275, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,320,0,0.875,0.4428752362728119,-0.814467191696167, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,256,0,0.9,0.6287660002708435,-0.46399611234664917, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,200,0,0.921875,0.38200804591178894,-0.9623135924339294, Spanish,1,1,1
+Madrid is a city where people speak, Spanish,top,128,0,0.95,0.006954295560717583,-4.968395709991455,"
+",0,1,0
+Madrid is a city where people speak, Spanish,top,64,0,0.975,2.7753067115554586e-06,-12.79474925994873, broken,0,1,0
+Madrid is a city where people speak, Spanish,top,0,0,1.0,1.680091179026566e-12,-27.112173080444336,kary,0,1,0
+Madrid is a city where people speak, Spanish,random,640,0,0.75,7.80886324491803e-08,-16.365421295166016, P,0,1,0
+Madrid is a city where people speak, Spanish,random,640,1,0.75,8.859890598955644e-10,-20.844316482543945,"
+
+",0,1,0
+Madrid is a city where people speak, Spanish,random,200,0,0.921875,3.6460318142417236e-07,-14.824456214904785, second,0,1,0
+Madrid is a city where people speak, Spanish,random,200,1,0.921875,8.268283280266076e-11,-23.21600914001465, alternatives,0,1,0
+Madrid is a city where people speak, Spanish,bottom,2360,0,0.078125,3.47593043237282e-09,-19.47740364074707,ulf,0,1,0
+Lisbon is a city where people speak, Portuguese,baseline,2560,0,0.0,0.2897404432296753,-1.238769769668579, Portuguese,1,1,1
+Lisbon is a city where people speak, Portuguese,top,1920,0,0.25,0.2771351933479309,-1.283249855041504, Portuguese,1,1,1
+Lisbon is a city where people speak, Portuguese,top,1280,0,0.5,0.19270509481430054,-1.6465942859649658, Portuguese,1,1,1
+Lisbon is a city where people speak, Portuguese,top,640,0,0.75,0.08806902915239334,-2.4296343326568604, a,0,1,0
+Lisbon is a city where people speak, Portuguese,top,320,0,0.875,0.011948348954319954,-4.427162170410156, a,0,1,0
+Lisbon is a city where people speak, Portuguese,top,256,0,0.9,0.006974679417908192,-4.965468883514404, the,0,1,0
+Lisbon is a city where people speak, Portuguese,top,200,0,0.921875,0.0019530141726136208,-6.238381385803223, the,0,1,0
+Lisbon is a city where people speak, Portuguese,top,128,0,0.95,1.8843058569473214e-05,-10.879365921020508, other,0,1,0
+Lisbon is a city where people speak, Portuguese,top,64,0,0.975,1.8225838616103829e-09,-20.123010635375977, most,0,1,0
+Lisbon is a city where people speak, Portuguese,top,0,0,1.0,3.804337053714413e-11,-23.992294311523438,kary,0,1,0
+Lisbon is a city where people speak, Portuguese,random,640,0,0.75,3.009643378959481e-08,-17.318859100341797, same,0,1,0
+Lisbon is a city where people speak, Portuguese,random,640,1,0.75,5.2446514018811285e-05,-9.855716705322266,"
+
+",0,1,0
+Lisbon is a city where people speak, Portuguese,random,200,0,0.921875,3.1352333923484466e-12,-26.488317489624023,]//,0,1,0
+Lisbon is a city where people speak, Portuguese,random,200,1,0.921875,1.0762668534169961e-10,-22.95235252380371, shouldn,0,1,0
+Lisbon is a city where people speak, Portuguese,bottom,2360,0,0.078125,1.0465959210392839e-09,-20.677722930908203, negotiating,0,1,0
+Tokyo is a city where people speak, Japanese,baseline,2560,0,0.0,0.14752142131328583,-1.9137818813323975, Japanese,1,1,1
+Tokyo is a city where people speak, Japanese,top,1920,0,0.25,0.14617371559143066,-1.922959566116333, Japanese,1,1,1
+Tokyo is a city where people speak, Japanese,top,1280,0,0.5,0.14957581460475922,-1.8999519348144531, Japanese,1,1,1
+Tokyo is a city where people speak, Japanese,top,640,0,0.75,0.36156386137008667,-1.0173165798187256, Japanese,1,1,1
+Tokyo is a city where people speak, Japanese,top,320,0,0.875,0.27598851919174194,-1.28739595413208, Japanese,1,1,1
+Tokyo is a city where people speak, Japanese,top,256,0,0.9,0.3981693983078003,-0.9208776950836182, Japanese,1,1,1
+Tokyo is a city where people speak, Japanese,top,200,0,0.921875,0.06890974193811417,-2.674957752227783, the,0,1,0
+Tokyo is a city where people speak, Japanese,top,128,0,0.95,0.041847728192806244,-3.173717737197876, or,0,1,0
+Tokyo is a city where people speak, Japanese,top,64,0,0.975,8.252036565181697e-08,-16.31022071838379, it,0,1,0
+Tokyo is a city where people speak, Japanese,top,0,0,1.0,6.421977533088707e-11,-23.46870994567871,assertAlmostEqual,0,1,0
+Tokyo is a city where people speak, Japanese,random,640,0,0.75,8.83937900653109e-07,-13.938879013061523,illery,0,1,0
+Tokyo is a city where people speak, Japanese,random,640,1,0.75,8.16594138086657e-07,-14.018123626708984,:||,0,1,0
+Tokyo is a city where people speak, Japanese,random,200,0,0.921875,3.0375484350031456e-09,-19.612215042114258,merse,0,1,0
+Tokyo is a city where people speak, Japanese,random,200,1,0.921875,9.585113147636548e-09,-18.463054656982422,ร,0,1,0
+Tokyo is a city where people speak, Japanese,bottom,2360,0,0.078125,4.684420105149911e-07,-14.573853492736816,zekiel,0,1,0
+The largest planet in the solar system is, Jupiter,baseline,2560,0,0.0,0.5182687640190125,-0.657261312007904, Jupiter,1,1,1
+The largest planet in the solar system is, Jupiter,top,1920,0,0.25,0.49705496430397034,-0.6990546584129333, Jupiter,1,1,1
+The largest planet in the solar system is, Jupiter,top,1280,0,0.5,0.5211425423622131,-0.6517316699028015, Jupiter,1,1,1
+The largest planet in the solar system is, Jupiter,top,640,0,0.75,0.08763890713453293,-2.434530258178711, the,0,1,0
+The largest planet in the solar system is, Jupiter,top,320,0,0.875,0.027183573693037033,-3.60514235496521, the,0,1,0
+The largest planet in the solar system is, Jupiter,top,256,0,0.9,0.007403829600661993,-4.905757904052734,...,0,1,0
+The largest planet in the solar system is, Jupiter,top,200,0,0.921875,0.00558218639343977,-5.188174724578857, the,0,1,0
+The largest planet in the solar system is, Jupiter,top,128,0,0.95,0.017839018255472183,-4.0263671875, and,0,1,0
+The largest planet in the solar system is, Jupiter,top,64,0,0.975,0.00024331221356987953,-8.321165084838867, at,0,1,0
+The largest planet in the solar system is, Jupiter,top,0,0,1.0,3.9027506226751996e-10,-21.664169311523438,conciliation,0,1,0
+The largest planet in the solar system is, Jupiter,random,640,0,0.75,3.5021386679545685e-08,-17.167306900024414, hospital,0,1,0
+The largest planet in the solar system is, Jupiter,random,640,1,0.75,1.330303831537094e-07,-15.832688331604004, altern,0,1,0
+The largest planet in the solar system is, Jupiter,random,200,0,0.921875,3.245675728180686e-09,-19.545942306518555,ortium,0,1,0
+The largest planet in the solar system is, Jupiter,random,200,1,0.921875,6.174760258659262e-09,-18.902795791625977,"""):",0,1,0
+The largest planet in the solar system is, Jupiter,bottom,2360,0,0.078125,1.8351186889531412e-11,-24.72132682800293,<|endoftext|>,0,1,0
+The opposite of hot is, cold,baseline,2560,0,0.0,0.8831154108047485,-0.12429940700531006, cold,1,1,1
+The opposite of hot is, cold,top,1920,0,0.25,0.8746254444122314,-0.13395953178405762, cold,1,1,1
+The opposite of hot is, cold,top,1280,0,0.5,0.8545094132423401,-0.15722773969173431, cold,1,1,1
+The opposite of hot is, cold,top,640,0,0.75,0.8999876976013184,-0.10537418723106384, cold,1,1,1
+The opposite of hot is, cold,top,320,0,0.875,0.7480114698410034,-0.2903369963169098, cold,1,1,1
+The opposite of hot is, cold,top,256,0,0.9,0.9048250913619995,-0.1000136286020279, cold,1,1,1
+The opposite of hot is, cold,top,200,0,0.921875,0.7517983913421631,-0.2852870523929596, cold,1,1,1
+The opposite of hot is, cold,top,128,0,0.95,0.3219425678253174,-1.1333820819854736, cold,1,1,1
+The opposite of hot is, cold,top,64,0,0.975,3.895829286193475e-05,-10.153018951416016, created,0,1,0
+The opposite of hot is, cold,top,0,0,1.0,1.9580072603275767e-06,-13.143583297729492,conciliation,0,1,0
+The opposite of hot is, cold,random,640,0,0.75,2.9166888904086363e-09,-19.652816772460938, or,0,1,0
+The opposite of hot is, cold,random,640,1,0.75,8.430227182998351e-09,-18.591442108154297, worship,0,1,0
+The opposite of hot is, cold,random,200,0,0.921875,4.012892240723431e-09,-19.33375358581543,$,0,1,0
+The opposite of hot is, cold,random,200,1,0.921875,2.7705254979082383e-06,-12.796473503112793,zburg,0,1,0
+The opposite of hot is, cold,bottom,2360,0,0.078125,4.283287058370888e-09,-19.268545150756836,<|endoftext|>,0,1,0
+The chemical symbol for gold is, Au,baseline,2560,0,0.0,0.9001622200012207,-0.10518030822277069, Au,1,1,1
+The chemical symbol for gold is, Au,top,1920,0,0.25,0.887664794921875,-0.11916109174489975, Au,1,1,1
+The chemical symbol for gold is, Au,top,1280,0,0.5,0.9034226536750793,-0.10156480222940445, Au,1,1,1
+The chemical symbol for gold is, Au,top,640,0,0.75,0.5847491025924683,-0.5365724563598633, Au,1,1,1
+The chemical symbol for gold is, Au,top,320,0,0.875,0.6864310503005981,-0.3762495219707489, Au,1,1,1
+The chemical symbol for gold is, Au,top,256,0,0.9,0.4300861954689026,-0.8437696099281311, Au,1,1,1
+The chemical symbol for gold is, Au,top,200,0,0.921875,0.0027636131271719933,-5.891216278076172, atomic,0,1,0
+The chemical symbol for gold is, Au,top,128,0,0.95,0.0013429675018414855,-6.612873554229736, g,0,1,0
+The chemical symbol for gold is, Au,top,64,0,0.975,3.4794645671354374e-06,-12.568632125854492, a,0,1,0
+The chemical symbol for gold is, Au,top,0,0,1.0,1.3583261626592957e-08,-18.11442756652832, capitalism,0,1,0
+The chemical symbol for gold is, Au,random,640,0,0.75,7.27621838336745e-08,-16.43606948852539, interim,0,1,0
+The chemical symbol for gold is, Au,random,640,1,0.75,1.7604419255690118e-08,-17.85511589050293,icksburg,0,1,0
+The chemical symbol for gold is, Au,random,200,0,0.921875,3.3555072054269885e-09,-19.512662887573242,<|endoftext|>,0,1,0
+The chemical symbol for gold is, Au,random,200,1,0.921875,4.204526449225199e-10,-21.589689254760742, Amen,0,1,0
+The chemical symbol for gold is, Au,bottom,2360,0,0.078125,1.7195972423778016e-10,-22.483760833740234,asci,0,1,0
